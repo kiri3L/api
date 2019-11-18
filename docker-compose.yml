@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: on-failure
+    command: --init-file /data/application/inti.sql
+    ports:
+      - "33060:3306"
+    environment:
+      - MYSQL_DATABASE=test_bd
+      - MYSQL_ROOT_PASSWORD=''
+      - MYSQL_USER=django_user
+      - MYSQL_PASSWORD=12345
+    volumes:
+      - "./databases/:/var/lib/mysql/"
+      - "./init.sql:/data/application/inti.sql"
+
+  id_servise:
+    container_name: id_servise_1
+    build: .
+    network_mode: host
+    command: python3 /app/manage.py runserver 127.0.0.1:8080
+    depends_on:
+      - mysql
