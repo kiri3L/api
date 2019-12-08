@@ -10,6 +10,19 @@ from .serializers import GateSerializer, UidSerializer, GateUidSerializer, GateA
 
 api_key = '32435'
 
+@api_view(['POST'])
+def add_gates(request, gate):
+    if request.method == 'POST':
+        try:
+            serializer = GateSerializer(gate)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(status=status.HTTP_201_CRETED) 
+        except:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+    return Response(status=status.HTTP_404_NOT_FOUND)
+
+
 @api_view(['GET'])
 def get_uids(request):    # получить список user_id привязанных к этому гейту
     try:
