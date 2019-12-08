@@ -85,8 +85,8 @@ DATABASES = {
         'NAME': 'test_bd',
         'USER': 'django_user',
         'PASSWORD': '12345',
-        'HOST': '172.18.0.1',
-        'PORT': '33060',
+        'HOST': 'mysql',
+        'PORT': '3306',
     }
 }
 
