@@ -1,0 +1,3 @@
+[Settings]
+admin_api_key = ID_service_admin
+api_key = ID_service_12345
