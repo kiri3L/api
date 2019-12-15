@@ -23,17 +23,17 @@ def check_api_key(request, token):
 
 @api_view(['GET'])
 def get_uids(request):    # получить список user_id привязанных к этому гейту
-    flag, message = check_api_key(request,api_key)
+    flag, message = check_api_key(request, api_key)
     if not flag:
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
-    try:
-        gate = request.GET.get('gate_id')
-        records = gate_uid.objects.filter(gate_id=gate)
-        serializer = UidSerializer(records, many=True)
-        return JsonResponse(serializer.data, safe=False)
-    except Exception:
-        return Response("Server feels bad", status=status.HTTP_404_NOT_FOUND)
+    #try:
+    gate = request.GET.get('gate_id')
+    records = gate_uid.objects.filter(gate_id=gate)
+    serializer = UidSerializer(records, many=True)
+    return JsonResponse(serializer.data, safe=False)
+    # except Exception:
+    #     return Response("Server feels bad", status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET'])

@@ -2,15 +2,10 @@ from django.db import models
 
 
 class gate_uid(models.Model):
-    gate = models.CharField(max_length=128)
+    gate_id = models.CharField(max_length=128)
     uid = models.CharField(max_length=128, null=True)
 
 
 class Gate(models.Model):
-    gate = models.CharField(max_length=128, null=False, unique=True)
+    gate_id = models.CharField(max_length=128, null=False, unique=True)
 
-
-class subscribes(models.Model):
-    gate = models.CharField(max_length=128)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
